@@ -19,6 +19,18 @@ create table tbl_clientes( --criar a tabela tbl_clientes;
     cidade varchar(20) not null,
     uf varchar(2) not null
 );
+create table tbl_pEntrega(
+	id_pEntrega int primary key,
+    cep char(8) not null,
+    rua varchar(50) not null,
+    num varchar(6) not null,
+    complemento varchar(10),
+    bairro varchar(20) not null,
+    cidade varchar(20) not null,
+    uf char(2) not null,
+    id_cliente int,
+    foreign key (id_cliente) references tbl_clientes(id_cliente)
+);
 create table tbl_cilindros(
 	id_cilindro int primary key,
     cilindro varchar(20) not null,
