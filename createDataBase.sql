@@ -20,7 +20,7 @@ create table tbl_clientes( --criar a tabela tbl_clientes;
     uf char(2) not null
 );
 create table tbl_pEntrega(
-	id_pEntrega int primary key,,
+	id_pEntrega int primary key,
     id_cliente int,
     foreign key (id_cliente) references tbl_clientes(id_cliente),
     ponto varchar(10) not null,
