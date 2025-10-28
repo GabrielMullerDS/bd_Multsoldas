@@ -48,7 +48,7 @@ create table tbl_gases(
     foreign key (id_cilindro) references tbl_cilindros(id_cilindro)
 );
 create table tbl_pedidos(
-	id_pedido int primary key,,
+	id_pedido int primary key,
     dt_pedido datetime default (now()) not null,
 	id_cliente int,
     foreign key (id_cliente) references tbl_clientes(id_cliente),
