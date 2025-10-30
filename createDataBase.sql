@@ -55,3 +55,9 @@ create table tbl_pedidos(
     id_cilindro int unsigned not null,
     foreign key (id_cilindro) references tbl_cilindros(id_cilindro)
 );
+create table tbl_cilindros_e_pedidos( --possivel relação N:N (muitos pra muitos)
+    id_cilindro int unsigned not null,
+    foreign key (id_cilindro) references tbl_cilindros(id_cilindro)
+    id_pedido int unsigned not null,
+    foreign key (id_pedido) references tbl_pedidos(id_pedido)
+);
