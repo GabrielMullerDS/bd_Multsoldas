@@ -53,7 +53,8 @@ create table tbl_pedidos(
 	id_cliente int unsigned not null,
     foreign key (id_cliente) references tbl_clientes(id_cliente),
     id_cilindro int unsigned not null,
-    foreign key (id_cilindro) references tbl_cilindros(id_cilindro)
+    foreign key (id_cilindro) references tbl_cilindros(id_cilindro),
+    pedido enum('Empréstimo', 'Aplicação', 'Locação') not null
 );
 create table tbl_cilindros_e_pedidos( --possivel relação N:N (muitos pra muitos)
     id_cilindro int unsigned not null,
