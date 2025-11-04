@@ -32,23 +32,29 @@ create table tbl_pEntrega(
     cidade varchar(20) not null,
     uf char(2) not null
 );
+create table tbl_gases(
+	id_gas int primary key,
+    gas varchar(20) not null,
+    volume varchar(5) not null
+);
+--  ↑
+--  | Inverti essas duas tabelas, já que um tipo de gás pode ter vários cilindros,
+--  | mas um cilindro só pode ter um tipo de gás — o que me parece fazer mais sentido.
+--  | Também alterei a FK. Vou dar mais uma estudada para verificar se está correto.
+--  | ---
+--  | I swapped these two tables since one type of gas can have several cylinders,
+--  | but a cylinder can only have one type of gas — which seems to make more sense.
+--  | I also changed the FK. I’ll study it a bit more to make sure it’s correct.
+--  ↓
 create table tbl_cilindros(
-	id_cilindro int unsigned primary key,
+	id_cilindro int unsigned primary key,,
+	id_gas int unsigned not null,
+    foreign key (id_gas) references tbl_gases(id_gas),
     cilindro varchar(20) not null,
     tamanho float(6, 2) not null,
     marca varchar(15) not null,
     empresa enum('Atms', 'AirP', 'Mult') not null,
     num_serial int(6) not null
-);
-/* ↑
-pensando melhor acho que vou inverter essas duas tabelas já que 1 tipo de gás pode ter vários cilindros, mas um cilindro só pode ter 1 tipo de gás
-↓ */
-create table tbl_gases(
-	id_gas int primary key,
-    gas varchar(20) not null,
-    volume varchar(5),
-	id_cilindro int unsigned not null,
-    foreign key (id_cilindro) references tbl_cilindros(id_cilindro)
 );
 create table tbl_pedidos(
 	id_pedido int unsigned primary key,
