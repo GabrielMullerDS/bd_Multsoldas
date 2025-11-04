@@ -40,6 +40,9 @@ create table tbl_cilindros(
     empresa enum('Atms', 'AirP', 'Mult') not null,
     num_serial int(6) not null
 );
+/* ↑
+pensando melhor acho que vou inverter essas duas tabelas já que 1 tipo de gás pode ter vários cilindros, mas um cilindro só pode ter 1 tipo de gás
+↓ */
 create table tbl_gases(
 	id_gas int primary key,
     gas varchar(20) not null,
