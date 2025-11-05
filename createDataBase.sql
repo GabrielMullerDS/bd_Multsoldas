@@ -37,15 +37,6 @@ create table tbl_gases(
     gas varchar(20) not null,
     volume varchar(5) not null
 );
---  ↑
---  | Inverti essas duas tabelas, já que um tipo de gás pode ter vários cilindros,
---  | mas um cilindro só pode ter um tipo de gás — o que me parece fazer mais sentido.
---  | Também alterei a FK. Vou dar mais uma estudada para verificar se está correto.
---  | ---
---  | I swapped these two tables since one type of gas can have several cylinders,
---  | but a cylinder can only have one type of gas — which seems to make more sense.
---  | I also changed the FK. I’ll study it a bit more to make sure it’s correct.
---  ↓
 create table tbl_cilindros(
 	id_cilindro int unsigned primary key,,
 	id_gas int unsigned not null,
@@ -61,13 +52,11 @@ create table tbl_pedidos(
     dt_pedido datetime default (now()) not null,
 	id_cliente int unsigned not null,
     foreign key (id_cliente) references tbl_clientes(id_cliente),
-    id_cilindro int unsigned not null,
-    foreign key (id_cilindro) references tbl_cilindros(id_cilindro),
     pedido enum('Empréstimo', 'Aplicação', 'Locação') not null
 );
-create table tbl_cilindros_e_pedidos( --possivel relação N:N (muitos pra muitos)
+create table tbl_cilindros_e_pedidos(
     id_cilindro int unsigned not null,
-    foreign key (id_cilindro) references tbl_cilindros(id_cilindro)
+    foreign key (id_cilindro) references tbl_cilindros(id_cilindro),
     id_pedido int unsigned not null,
-    foreign key (id_pedido) references tbl_pedidos(id_pedido)
+    foreign key (id_pedido) references tbl_pedidos(id_pedido),
 );
