@@ -16,16 +16,16 @@ create table tbl_clientes( --criar a tabela tbl_clientes;
 );
 create table tbl_pEntrega(
 	id_pEntrega int unsigned primary key,
-    id_cliente int unsigned not null,
-    foreign key (id_cliente) references tbl_clientes(id_cliente),
-    ponto varchar(10) not null,
-    cep char(8) not null,
-    rua varchar(50) not null,
-    num varchar(6) not null,
+    fk_cliente int unsigned not null,
+    foreign key (fk_cliente) references tbl_clientes(id_cliente),
+    ponto varchar(10),
+    cep char(8),
+    rua varchar(50),
+    num varchar(6),
     complemento varchar(10),
-    bairro varchar(20) not null,
-    cidade varchar(20) not null,
-    uf char(2) not null
+    bairro varchar(20),
+    cidade varchar(20),
+    uf char(2)
 );
 create table tbl_gases(
 	id_gas int primary key,
@@ -34,8 +34,8 @@ create table tbl_gases(
 );
 create table tbl_cilindros(
 	id_cilindro int unsigned primary key,
-	id_gas int unsigned not null,
-    foreign key (id_gas) references tbl_gases(id_gas),
+	fk_gas int unsigned not null,
+    foreign key (fk_gas) references tbl_gases(id_gas),
     cilindro varchar(20) not null,
     tamanho float(6, 2) not null,
     marca varchar(15) not null,
@@ -45,13 +45,13 @@ create table tbl_cilindros(
 create table tbl_pedidos(
 	id_pedido int unsigned primary key,
     dt_pedido datetime default (now()) not null,
-	id_cliente int unsigned not null,
-    foreign key (id_cliente) references tbl_clientes(id_cliente),
+	fk_cliente int unsigned not null,
+    foreign key (fk_cliente) references tbl_clientes(id_cliente),
     pedido enum('Empréstimo', 'Aplicação', 'Locação') not null
 );
 create table tbl_cilindros_e_pedidos(
-    id_cilindro int unsigned not null,
-    foreign key (id_cilindro) references tbl_cilindros(id_cilindro),
-    id_pedido int unsigned not null,
-    foreign key (id_pedido) references tbl_pedidos(id_pedido)
+    fk_cilindro int unsigned not null,
+    foreign key (fk_cilindro) references tbl_cilindros(id_cilindro),
+    fk_pedido int unsigned not null,
+    foreign key (fk_pedido) references tbl_pedidos(id_pedido)
 );
