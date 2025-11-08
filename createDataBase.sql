@@ -10,7 +10,9 @@ use bd_Multsoldas; --use o bd_Multsoldas;
 create table tbl_clientes( --criar a tabela tbl_clientes;
 	id_cliente int unsigned primary key,
     nome varchar(50) not null,
-    cpf_cnpj varchar(14) not null unique
+    cpf_cnpj varchar(14) not null unique,
+	telefone varchar(11) not null,
+	email varchar(75) not null
 );
 create table tbl_pEntrega(
 	id_pEntrega int unsigned primary key,
