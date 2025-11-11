@@ -40,18 +40,19 @@ create table tbl_cilindros(
     tamanho float(6, 2) not null,
     marca varchar(15) not null,
     empresa enum('Atms', 'AirP', 'Mult') not null,
-    num_serial int(6) not null
+    num_serial int(6) not null,
+	status enum('Emprestado', 'Aplicado', 'Locado', 'Retido') not null
 );
 create table tbl_pedidos(
 	id_pedido int unsigned primary key,
     dt_pedido datetime default (now()) not null,
-	fk_cliente int unsigned not null,
-    foreign key (fk_cliente) references tbl_clientes(id_cliente),
     pedido enum('Empréstimo', 'Aplicação', 'Locação') not null
 );
 create table tbl_cilindros_e_pedidos(
     fk_cilindro int unsigned not null,
     foreign key (fk_cilindro) references tbl_cilindros(id_cilindro),
     fk_pedido int unsigned not null,
-    foreign key (fk_pedido) references tbl_pedidos(id_pedido)
+    foreign key (fk_pedido) references tbl_pedidos(id_pedido),
+	fk_cliente int unsigned not null,
+	foreign key (fk_cliente) references tbl_clientes(id_cliente)
 );
