@@ -12,7 +12,8 @@ create table tbl_clientes( --criar a tabela tbl_clientes;
     nome varchar(50) not null,
     cpf_cnpj varchar(14) not null unique,
 	telefone varchar(11) not null,
-	email varchar(75) not null
+	email varchar(75) not null,
+	status enum('Ativo', 'Inativo') default 'Ativo'
 );
 create table tbl_pEntrega(
 	id_pEntrega int unsigned primary key,
@@ -45,6 +46,8 @@ create table tbl_cilindros(
 );
 create table tbl_pedidos(
 	id_pedido int unsigned primary key,
+	fk_cliente int unsigned not null,
+	foreign key (fk_cliente) references tbl_clientes(id_cliente),
     dt_pedido datetime default (now()) not null,
     pedido enum('Empréstimo', 'Aplicação', 'Locação') not null
 );
@@ -52,7 +55,5 @@ create table tbl_cilindros_e_pedidos(
     fk_cilindro int unsigned not null,
     foreign key (fk_cilindro) references tbl_cilindros(id_cilindro),
     fk_pedido int unsigned not null,
-    foreign key (fk_pedido) references tbl_pedidos(id_pedido),
-	fk_cliente int unsigned not null,
-	foreign key (fk_cliente) references tbl_clientes(id_cliente)
+    foreign key (fk_pedido) references tbl_pedidos(id_pedido)
 );
